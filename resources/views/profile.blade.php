@@ -10,13 +10,13 @@
             <div class="card">
                 <div class="card-body p-5">
     
-                <form class="d-flex justify-content-center align-items-center mb-4" method="POST">
+                <form enctype="multipart/form-data" class="d-flex justify-content-center align-items-center mb-4" method="POST" action="{{route('profile.add')}}">
                     @csrf
                     <div class="input-group mb-3">
                         
-                        <input type="text" id="form2" class="form-control" placeholder="New task..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" id="form2" class="form-control" placeholder="New task..." aria-label="Recipient's username" aria-describedby="button-addon2" name="newDo">
                         
-                        <button class="btn btn-info" type="button" id="button-addon2" name="addComment">Button</button>
+                        <button class="btn btn-info" type="submit" id="button-addon2" name="addDo">Button</button>
                     </div>
                 </form>
     
@@ -42,32 +42,20 @@
                     <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
                     aria-labelledby="ex1-tab-1">
                     <ul class="list-group mb-0">
+                        @foreach ($task as $item)
+                            
+                        
                         <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
                         style="background-color: #f4f6f7;">
                         <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
-                        <s>Cras justo odio</s>
+                        {{-- <s>Cras justo odio</s> --}}
+                        {{$item->task}}
                         </li>
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
-                        <s>Dapibus ac facilisis in</s>
-                        </li>
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                        Morbi leo risus
-                        </li>
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                        Porta ac consectetur ac
-                        </li>
-                        <li class="list-group-item d-flex align-items-center border-0 mb-0 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                        Vestibulum at eros
-                        </li>
+
+                        @endforeach
+
                     </ul>
+
                     </div>
                     <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                     <ul class="list-group mb-0">
@@ -85,20 +73,6 @@
                         style="background-color: #f4f6f7;">
                         <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
                         Vestibulum at eros
-                        </li>
-                    </ul>
-                    </div>
-                    <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                    <ul class="list-group mb-0">
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
-                        <s>Cras justo odio</s>
-                        </li>
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
-                        <s>Dapibus ac facilisis in</s>
                         </li>
                     </ul>
                     </div>
