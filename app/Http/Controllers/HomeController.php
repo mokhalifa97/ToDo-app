@@ -25,12 +25,6 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function delete($id){
-        $task= Profile::find($id);
-        $task->delete();
-
-        return redirect()->route('home')->with('delete','TASK DELETED SUCCESSFULLY');
-    }
 
     public function index()
     {

@@ -3,13 +3,22 @@
 @section('content')
                 
     <section class="vh-100 gradient-custom">
-        <div class="container  h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="container ">
+        <div class="row d-flex justify-content-center align-items-center text-center h-100">
             <div class="col col-xl-10">
-                <h1>Create New Tasks</h1>
+                <h1 class="m-5">Create New Tasks</h1>
     
             <div class="card">
-                <div class="card-body p-5">
+                @if (session('add'))
+                    <div class="alert alert-primary" >{{session('add')}}</div>
+                    @endif
+                    @if (session('delete'))
+                    <div class="alert alert-danger" >{{session('delete')}}</div>
+                    @endif
+                    @if (session('update'))
+                    <div class="alert alert-success" >{{session('update')}}</div>
+                    @endif
+                <div class="card-body pt-5">
     
                 <form enctype="multipart/form-data" class="d-flex justify-content-center align-items-center mb-4" method="POST" action="{{route('profile.add')}}">
                     @csrf
@@ -27,49 +36,51 @@
                 <div class="tab-content" id="ex1-content">
                     <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
                     aria-labelledby="ex1-tab-1">
+
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                            
+                            <th scope="col">ID</th>
+                            <th scope="col">User_id</th>
+                            <th scope="col">Tasks</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            @foreach ($task as $item)
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->user_id}}</td>
+                            <td>{{$item->task}}</td>
+                            <td>
+                                @if ($item->status=="not complete")
+                                <div class="badge bg-warning">
+                                    Not Complete
+                                </td>
+                                </div>
+                                @else
+                                <div class="badge bg-success">
+                                    Complete
+                                </td>
+                                </div>
+                                @endif
+                                
+                            <td class="d-flex justify-content-center">
+                                <a href="{{route('delete',$item->id)}}" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                                <a href="{{route('edit',$item->id)}}" class="btn btn-info ms-1 ">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     
-                        
 
-                        @if (empty($task))
-                        <div class="alert alert-danger text-center">No Added Tasks Yet</div>
-                        @else
-
-                        @foreach ($task as $item)
-                        <ul class="list-group mb-0">
-                            <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                                style="background-color: #f4f6f7;">
-
-                        @if ($item->status=="not complete")
-                                <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                                {{$item->task}}
-                        @else
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked/>
-                        <s>{{$item->task}}</s>
-                        @endif
-                            </li> 
-                        @endforeach
-                        @endif
-                    </ul>
-
-                    </div>
-                    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                    <ul class="list-group mb-0">
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                        Morbi leo risus
-                        </li>
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                        Porta ac consectetur ac
-                        </li>
-                        <li class="list-group-item d-flex align-items-center border-0 mb-0 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." />
-                        Vestibulum at eros
-                        </li>
-                    </ul>
                     </div>
                 </div>
                 <!-- Tabs content -->

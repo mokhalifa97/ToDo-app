@@ -16,10 +16,32 @@ class ProfileController extends Controller
             'task' => $task,
             'user_id' => $user_id
         ]);
-        return redirect()->route('home')->with('cate','NEW TASK ADDED SUCCESSFULLY');
+        return redirect()->route('profile')->with('add','NEW TASK ADDED SUCCESSFULLY');
     }
 
-    
+    public function delete($id){
+        $task= Profile::find($id);
+        $task->delete();
+
+        return redirect()->route('profile')->with('delete','TASK DELETED SUCCESSFULLY');
+    }
+
+    public function edit($id){
+        $task=Profile::find($id);
+        return view('edit',['task' => $task]);
+    }
+
+    public function save(Request $request,$id){
+        $new= Profile::find($id);
+
+        $new->update([
+            'task' => $request->task,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('profile')->with('update','TASK UPDATED SUCCESSFULLY');
+
+    }
 
     public function index(){
         $id=Auth::user()->id;

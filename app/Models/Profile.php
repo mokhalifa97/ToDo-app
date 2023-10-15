@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
+    public $enumStatus = ['complete', 'not complete'];
+
     protected $fillable=[
-        'user_id','task',
+        'user_id','task', 'status'
     ];
 }
