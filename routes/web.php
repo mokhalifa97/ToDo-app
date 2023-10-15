@@ -27,5 +27,4 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/profile/edit/{id}',[ProfileController::class,'edit'])->name('edit');
     Route::post('/profile/save',[ProfileController::class,'add'])->name('profile.add');
     Route::post('/edit/save/{id}',[ProfileController::class,'save'])->name('save.edit');
-
 });
