@@ -12,6 +12,8 @@
     
                 <form enctype="multipart/form-data" class="d-flex justify-content-center align-items-center mb-4" method="POST" action="{{route('profile.add')}}">
                     @csrf
+
+                    
                     <div class="input-group mb-3">
                         
                         <input type="text" id="form2" class="form-control" placeholder="New task..." aria-label="Recipient's username" aria-describedby="button-addon2" name="newDo">
@@ -41,19 +43,22 @@
                 <div class="tab-content" id="ex1-content">
                     <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
                     aria-labelledby="ex1-tab-1">
-                    <ul class="list-group mb-0">
-                        @foreach ($task as $item)
-                            
+                    
                         
-                        <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-                        style="background-color: #f4f6f7;">
-                        <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
-                        {{-- <s>Cras justo odio</s> --}}
-                        {{$item->task}}
-                        </li>
 
+                        @if (empty($task))
+                        <div class="alert alert-danger text-center">No Added Tasks Yet</div>
+                        @else
+                        @foreach ($task as $item)
+                        <ul class="list-group mb-0">
+                                <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+                                    style="background-color: #f4f6f7;">
+                                <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." checked />
+                            {{-- <s>Cras justo odio</s> --}}
+                            {{$item->task}}
+                            </li> 
                         @endforeach
-
+                        @endif
                     </ul>
 
                     </div>

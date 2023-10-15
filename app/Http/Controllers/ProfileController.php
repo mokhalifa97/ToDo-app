@@ -16,13 +16,15 @@ class ProfileController extends Controller
             'task' => $task,
             'user_id' => $user_id
         ]);
-        return redirect()->route('home')->with('cate','NEW CATEGORY ADDED SUCCESSFULLY');
+        return redirect()->route('home')->with('cate','NEW TASK ADDED SUCCESSFULLY');
     }
 
     
 
     public function index(){
-        $task= Profile::all();
+        $id=Auth::user()->id;
+        $task= Profile::where('user_id',$id)->get();
+        
         return view('profile',['task'=>$task]);
     }
 }

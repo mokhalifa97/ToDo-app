@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/delete/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('delete');
     Route::get('/profile',[ProfileController::class,'index'])->name('profile');
     Route::post('/profile/save',[ProfileController::class,'add'])->name('profile.add');
 });
