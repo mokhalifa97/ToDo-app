@@ -45,12 +45,9 @@ class ProfileController extends Controller
 
     public function index(){
         $id=Auth::user()->id;
-        $task= Profile::where('user_id',$id)->get();
+        $task= Profile::where('user_id',$id)->latest()->get();
         
         return view('profile',['task'=>$task]);
     }
 
-    // API 
-
-    
 }

@@ -20,7 +20,6 @@ class ProfileController extends Controller
         return response()->json($data);
     }
 
-
     public function show($id){
         $task= Profile::find($id);
         if($task){
