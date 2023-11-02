@@ -10,13 +10,19 @@
     
             <div class="card">
                 @if (session('add'))
-                    <div class="alert alert-primary" >{{session('add')}}</div>
+                    <div class="alert alert-primary" >{{session('add')}}
+                        <a href=""><i class="fa-solid fa-xmark float-end"></i></a>
+                    </div>
                     @endif
                     @if (session('delete'))
-                    <div class="alert alert-danger" >{{session('delete')}}</div>
+                    <div class="alert alert-danger" >{{session('delete')}}
+                        <a href=""><i class="fa-solid fa-xmark float-end"></i></a>
+                    </div>
                     @endif
                     @if (session('update'))
-                    <div class="alert alert-success" >{{session('update')}}</div>
+                    <div class="alert alert-success" >{{session('update')}}
+                        <a href=""><i class="fa-solid fa-xmark float-end"></i></a>
+                    </div>
                     @endif
                 <div class="card-body pt-5">
     

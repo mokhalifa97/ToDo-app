@@ -40,7 +40,6 @@ class ProfileController extends Controller
         ]);
 
         return redirect()->route('profile')->with('update','TASK UPDATED SUCCESSFULLY');
-
     }
 
     public function index(){
